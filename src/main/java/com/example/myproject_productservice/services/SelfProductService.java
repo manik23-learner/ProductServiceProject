@@ -8,11 +8,20 @@ import java.util.List;
 
 @Service("SelfProductService")
 public class SelfProductService implements ProductService {
-    public Product getSingleProduct(long id) {
+   public Product getSingleProduct(long id) {
         return null;
     }
     @Override
     public List<Product> getAllProducts() {
+        return null;
+    }
+
+    @Override
+    public Product createProduct(String title,
+                                 String description,
+                                 String image,
+                                 String category,
+                                 double price) {
         return null;
     }
 }

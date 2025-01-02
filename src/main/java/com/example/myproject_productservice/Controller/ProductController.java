@@ -1,11 +1,10 @@
 package com.example.myproject_productservice.Controller;
 
+import com.example.myproject_productservice.dtos.CreateProductDTO;
 import com.example.myproject_productservice.models.Product;
 import com.example.myproject_productservice.services.ProductService;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,13 +20,23 @@ public class ProductController {
     }
 
     @GetMapping("/products/{id}")
-    Product getSingleProduct(@PathVariable("id") long id){
+    Product getSingleProduct(@PathVariable("id") long id) {
         return productService.getSingleProduct(id);
     }
     //Constructor injection
 
     @GetMapping("/products/")
-    List<Product> getAllProducts(){
+    List<Product> getAllProducts() {
         return productService.getAllProducts();
+    }
+
+    @PostMapping("/products")
+    public Product createproduct(@RequestBody CreateProductDTO createProductDTO) {
+        return productService.createProduct(createProductDTO.getTitle(),
+                createProductDTO.getDescription(),
+                createProductDTO.getImage(),
+                createProductDTO.getCategory(),
+                createProductDTO.getPrice());
+
     }
 }
